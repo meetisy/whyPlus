@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage>{
         backgroundColor: Colors.white,
         title: new TabBar(
           labelColor: Colors.black,
+          // labelStyle: ,
           tabs: [
             new Tab(text: "关注"),
             new Tab(text: "推荐"),
