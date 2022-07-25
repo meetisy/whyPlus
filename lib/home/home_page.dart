@@ -1,4 +1,5 @@
 
+import 'package:copywhy/home/idea.dart';
 import 'package:flutter/material.dart';
 import 'follow.dart';
 import 'recommend.dart';
@@ -20,14 +21,14 @@ class _HomePageState extends State<HomePage>{
           labelColor: Colors.black,
           // labelStyle: ,
           tabs: [
-            new Tab(text: "关注"),
+            new Tab(text: "想法"),
             new Tab(text: "推荐"),
             new Tab(text: "热榜")
           ],
         )
       ),
       body: new TabBarView(children: [
-        new Follow(),
+        new Idea(),
         new Recommend(),
         new Hot()
       ]),

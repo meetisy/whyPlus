@@ -68,7 +68,7 @@ class _HotState extends State<Hot>{
             bottom: new BorderSide(color:  Colors.black12, width: 1.0)
         )
     ),
-      child: new FlatButton(
+      child: new TextButton(
           onPressed: flatButtonOnPressed,
           child: flatButtonChild)
     );
@@ -84,7 +84,14 @@ class _HotState extends State<Hot>{
             hotCard(questionList[1]),
             hotCard(questionList[2]),
             hotCard(questionList[3]),
-            hotCard(questionList[4])
+            hotCard(questionList[4]),
+            hotCard(questionList[5]),
+            hotCard(questionList[6]),
+            hotCard(questionList[7]),
+            hotCard(questionList[8]),
+            hotCard(questionList[9]),
+            hotCard(questionList[10]),
+            hotCard(questionList[11])
           ],
         ),
       ),
