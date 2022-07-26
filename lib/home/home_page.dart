@@ -33,18 +33,40 @@ class _HomePageState extends State<HomePage>{
         new Recommend(),
         new Hot()
       ]),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2,
-        items: [
-          BottomNavigationBarItem(icon: Text("首页"),label: "a"),
-          BottomNavigationBarItem(icon: Text("关注"),label: "a"),
-          BottomNavigationBarItem(icon: Text("+"),label: "a"),
-          BottomNavigationBarItem(icon: Text("会员"),label: "a"),
-          BottomNavigationBarItem(icon: Text("我的"),label: "a")
-        ],
-        onTap: (index){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[index]));
-        },
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: 2,
+      //   items: [
+      //     BottomNavigationBarItem(icon: Text("首页"),label: "a"),
+      //     BottomNavigationBarItem(icon: Text("关注"),label: "a"),
+      //     BottomNavigationBarItem(icon: Text("+"),label: "a"),
+      //     BottomNavigationBarItem(icon: Text("会员"),label: "a"),
+      //     BottomNavigationBarItem(icon: Text("我的"),label: "a")
+      //   ],
+      //   onTap: (index){
+      //     Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[index]));
+      //   },
+      // ),
+      bottomNavigationBar: BottomAppBar(
+    color: Colors.white,
+    //shape: CircularNotchedRectangle(), // 底部导航栏打一个圆形的洞
+    child: Row(
+      children: [
+        IconButton(icon: Icon(Icons.home),onPressed: ()=>{
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[0]))
+        }),
+        IconButton(icon: Icon(Icons.people),onPressed: ()=>{
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[0]))
+        }),
+        FloatingActionButton(
+          onPressed: ()=>{print(1)},), //中间位置空出
+        IconButton(icon: Icon(Icons.rocket_launch),onPressed: ()=>{
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[0]))
+        }),
+        IconButton(icon: Icon(Icons.face),onPressed: ()=>{print(0)}),
+      ],
+        mainAxisAlignment: MainAxisAlignment.spaceAround
+    )
       ),
     ));
   }

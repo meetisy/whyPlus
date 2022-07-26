@@ -14,20 +14,32 @@ class _IdeaState extends State<Idea>{
       print("_onRefresh");
     }
     var imageList = ["https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
-    "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg"];
-    var ideaList = ["2333是什么意思?","什么是flutter?"];
+    "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",
+        "https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
+      "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",
+      "https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
+      "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",
+      "https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
+      "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",
+      "https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
+      "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",];
+    var ideaList = ["2333是什么意思?","什么是flutter?",
+      "2333是什么意思?","什么是flutter?",
+      "2333是什么意思?","什么是flutter?",
+      "2333是什么意思?","什么是flutter?", "2333是什么意思?","什么是flutter?",];
     return RefreshIndicator(
       onRefresh: _onRefresh,
       child: StaggeredGridView.countBuilder(
         crossAxisCount: 4,
-        itemCount: 2,
+        itemCount: 9,
         itemBuilder: (BuildContext context, int index) =>
         new Container(
             color: Colors.white,
             child: Column(
               children: [
                 Image.network(imageList[index]),
-                Text(ideaList[index])
+                Spacer(),
+                Text(ideaList[index],style: TextStyle(fontSize: 15),)
               ],
             )
         ),
