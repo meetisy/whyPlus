@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'follow.dart';
 import 'recommend.dart';
 import 'hot.dart';
+import 'search.dart';
 
 class HomePage extends StatefulWidget{
 
@@ -14,9 +15,12 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context){
-    var pageList = [Idea(),Follow(),Follow(),Follow(),Follow()];
+    var pageList = [Idea(),Follow(),Follow(),Follow(),Search()];
     return new DefaultTabController(length: 3, child: new Scaffold(
       appBar: new AppBar(
+        actions: [IconButton(onPressed: ()=>{
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[4]))
+        }, icon: Icon(Icons.search,color: Colors.black,))],
         backgroundColor: Colors.white,
         title: new TabBar(
           labelColor: Colors.black,
@@ -24,14 +28,14 @@ class _HomePageState extends State<HomePage>{
           tabs: [
             new Tab(text: "想法"),
             new Tab(text: "推荐"),
-            new Tab(text: "热榜")
+            new Tab(text: "热榜"),
           ],
         )
       ),
       body: new TabBarView(children: [
         new Idea(),
         new Recommend(),
-        new Hot()
+        new Hot(),
       ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // bottomNavigationBar: BottomNavigationBar(
@@ -59,6 +63,9 @@ class _HomePageState extends State<HomePage>{
           Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[0]))
         }),
         FloatingActionButton(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.blueAccent,
+          child: new Icon(Icons.add),
           onPressed: ()=>{print(1)},), //中间位置空出
         IconButton(icon: Icon(Icons.rocket_launch),onPressed: ()=>{
           Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[0]))
