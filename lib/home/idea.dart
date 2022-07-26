@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'question_page.dart';
 class Idea extends StatefulWidget{
   @override
   _IdeaState createState() => new _IdeaState();
@@ -32,17 +33,32 @@ class _IdeaState extends State<Idea>{
       child: StaggeredGridView.countBuilder(
         crossAxisCount: 4,
         itemCount: 9,
-        itemBuilder: (BuildContext context, int index) =>
-        new Container(
-            color: Colors.white,
-            child: Column(
-              children: [
+        itemBuilder: (BuildContext context, int index){
+          var textButtonOnPressed = (){
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context){
+                  return new QuestionPage();}));
+          };
+          var textButtonChild = Column(children: [
                 Image.network(imageList[index]),
                 Spacer(),
-                Text(ideaList[index],style: TextStyle(fontSize: 15),)
-              ],
-            )
-        ),
+                Text(ideaList[index],style: TextStyle(fontSize: 15,color: Colors.black),)
+          ]);
+          return new Container(
+              color: Colors.white,
+              child: TextButton(
+                child: textButtonChild,
+                onPressed: textButtonOnPressed,
+              ),
+              // child: Column(
+              //   children: [
+              //     Image.network(imageList[index]),
+              //     Spacer(),
+              //     Text(ideaList[index],style: TextStyle(fontSize: 15),)
+              //   ],
+              // )
+          );
+        },
         staggeredTileBuilder: (int index) =>
         new StaggeredTile.count(2, index.isEven ? 2 : 1.7),
         mainAxisSpacing: 8.0,
