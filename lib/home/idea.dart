@@ -27,7 +27,6 @@ class _IdeaState extends State<Idea>{
             child: Column(
               children: [
                 Image.network(imageList[index]),
-                Spacer(),
                 Text(ideaList[index])
               ],
             )

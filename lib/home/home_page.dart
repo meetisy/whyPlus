@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context){
+    var pageList = [Idea(),Follow(),Follow(),Follow(),Follow()];
     return new DefaultTabController(length: 3, child: new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.white,
@@ -32,6 +33,19 @@ class _HomePageState extends State<HomePage>{
         new Recommend(),
         new Hot()
       ]),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 2,
+        items: [
+          BottomNavigationBarItem(icon: Text("首页"),label: "a"),
+          BottomNavigationBarItem(icon: Text("关注"),label: "a"),
+          BottomNavigationBarItem(icon: Text("+"),label: "a"),
+          BottomNavigationBarItem(icon: Text("会员"),label: "a"),
+          BottomNavigationBarItem(icon: Text("我的"),label: "a")
+        ],
+        onTap: (index){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[index]));
+        },
+      ),
     ));
   }
 }
