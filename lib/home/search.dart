@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Search extends StatefulWidget{
   @override
@@ -106,7 +107,24 @@ class _SearchState extends State<Search>{
                   children: searchHotList.map((e) => TextButton(
                     onPressed: ()=>{print("请求搜索热点:${e}")},
                       child: Text("${e}",style: TextStyle(color: Colors.black,fontSize :15)))).toList(),)
-              )
+              ),
+              DefaultTabController(length: 2,child: Container(
+                child: Column(
+                  children: [
+                    TabBar(
+                      labelColor: Colors.black,
+                      tabs: [
+                      new Tab(text: "想法",),
+                      new Tab(text: "推荐"),
+                    ],),
+                    Container(child: new TabBarView(
+                        children: [
+                          Text("0"),
+                          Text("1"),
+                        ]),height: 200,)
+                  ],
+                ),
+              ),)
             ],
           )
         ),
