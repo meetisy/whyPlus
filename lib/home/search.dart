@@ -6,6 +6,7 @@ class Search extends StatefulWidget{
 }
 class _SearchState extends State<Search>{
   var historySearchList = [];
+  var deleteSearchOnPressed = false;
   @override
   Widget build(BuildContext context) {
     var controller = TextEditingController();
@@ -15,6 +16,11 @@ class _SearchState extends State<Search>{
         print("请求搜索问题：${controller.text}");
         setState(() {
           historySearchList.add("${controller.text}");
+        });
+      }
+      if (_focusNode.hasFocus && deleteSearchOnPressed == true) {
+        setState(() {
+          deleteSearchOnPressed = false;
         });
       }
     });
@@ -30,6 +36,7 @@ class _SearchState extends State<Search>{
     ];
     return MaterialApp(
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: Icon(Icons.search,color: Colors.black,),
@@ -59,18 +66,31 @@ class _SearchState extends State<Search>{
                   Text("  历史搜索",style: TextStyle(fontSize: 15,color: Colors.black),),Spacer(),
                   IconButton(onPressed: ()=>{
                     setState(() {
-                      historySearchList = [];
+                      //historySearchList = [];
+                      deleteSearchOnPressed = true;
                     })
-                  }, icon: Icon(Icons.dangerous))
+                  }, icon:Icon(Icons.dangerous_outlined))
                 ],
               ),
-              Column(
-                  // children: [TextButton(onPressed: ()=>{print(2333)}, child: Text("2333"))],
-                children:[
-                ...historySearchList.map((e) => TextButton(onPressed: ()=>{
-                print("请求搜索历史搜索过的问题：${e}")
-                }, child: Text(e,textAlign: TextAlign.left,style: TextStyle(fontSize: 15,color: Colors.black),))).toList(),]
+              Wrap(
+                children: [
+                  // deleteSearchOnPressed?
+                  // Text("true"):Text("false")
+                  //
+
+                  ...historySearchList.map((e) =>
+                  deleteSearchOnPressed?
+                      Wrap(children: [Text("${e}",style: TextStyle(fontSize: 15),),IconButton(onPressed: ()=>{
+                        setState(()=>{
+                          historySearchList.remove(e)
+                        })
+                      }, icon: Icon(Icons.close))],):
+                      TextButton(onPressed: ()=>{
+                    print("请求搜索历史搜索过的问题：${e}")
+                    }, child: Text(e,textAlign: TextAlign.left,style: TextStyle(fontSize: 15,color: Colors.black),))).toList()
+                ],
               ),
+
               Row(
                 children: [Text("  搜索发现",style: TextStyle(fontSize: 15)),Spacer(),TextButton.icon(icon: Icon(Icons.recycling,color: Colors.black26,),label: Text("换一换",style: TextStyle(fontSize: 15,color: Colors.black26),),onPressed: ()=>{print("刷新搜索热点")},)],
               ),
@@ -82,8 +102,10 @@ class _SearchState extends State<Search>{
                         crossAxisCount: 2,
                         childAspectRatio: 2 //宽高比为1时，子widget
                     ),
-                  children: searchHotList.map((e) => Text("${e}",style: TextStyle(color: Colors.black,fontSize :15))).toList(),
-                ),
+                  // children: searchHotList.map((e) => Text("${e}",style: TextStyle(color: Colors.black,fontSize :15))).toList(),
+                  children: searchHotList.map((e) => TextButton(
+                    onPressed: ()=>{print("请求搜索热点:${e}")},
+                      child: Text("${e}",style: TextStyle(color: Colors.black,fontSize :15)))).toList(),)
               )
             ],
           )

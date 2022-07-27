@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context){
-    var pageList = [Idea(),Follow(),Follow(),Follow(),Search()];
+    var pageList = [HomePage(),Follow(),Follow(),Follow(),Search()];
     return new DefaultTabController(length: 3, child: new Scaffold(
       appBar: new AppBar(
         actions: [IconButton(onPressed: ()=>{
