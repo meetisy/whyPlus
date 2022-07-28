@@ -114,8 +114,8 @@ class _SearchState extends State<Search>{
                     TabBar(
                       labelColor: Colors.black,
                       tabs: [
-                      new Tab(text: "想法",),
-                      new Tab(text: "推荐"),
+                      new Tab(text: "热搜影视",),
+                      new Tab(text: "热搜游戏"),
                     ],),
                     Container(child: new TabBarView(
                         children: [

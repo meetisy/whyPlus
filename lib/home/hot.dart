@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'question.dart';
 import 'question_page.dart';
+import 'package:dio/dio.dart';
 
 class Hot extends StatefulWidget{
   @override
   _HotState createState() => new _HotState();
 }
 class _HotState extends State<Hot>{
-
-  Widget hotCard(Question question){
+  Widget hotCard(Map<String,dynamic> question){
     var flatButtonOnPressed = (){
       Navigator.of(context).push(
           MaterialPageRoute(builder: (context){
@@ -18,9 +18,9 @@ class _HotState extends State<Hot>{
       children: <Widget>[
         new Container(
           child: new Text(
-            question.order,
+            question["order"],
             style: new TextStyle(
-                color: question.order.compareTo("03")<=0?Colors.red:Colors.orange,fontSize: 18)
+                color: Colors.red,fontSize: 18)
           ),
           alignment: Alignment.topLeft,
         )
@@ -30,14 +30,14 @@ class _HotState extends State<Hot>{
       children: <Widget>[
         new Container(
           child: new Text(
-            question.title,
+            question["title"],
             style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, height: 2, color: Colors.black),
           ),
           padding: const EdgeInsets.only(bottom: 15.0,right: 4.0),
           alignment: Alignment.topLeft,
         ),
         new Container(
-          child: new Text(question.hotNum, style: new TextStyle(color: Colors.black)),
+          child: new Text(question["hotNum"], style: new TextStyle(color: Colors.black)),
           alignment: Alignment.topLeft,
         )
       ],
@@ -47,7 +47,7 @@ class _HotState extends State<Hot>{
         child: new Container(
           foregroundDecoration:new BoxDecoration(
               image: new DecorationImage(
-                image: new NetworkImage(question.imgUrl),
+                image: new NetworkImage(question["imageUrl"]),
                 centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
               ),
               borderRadius: const BorderRadius.all(const Radius.circular(6.0))
@@ -75,26 +75,31 @@ class _HotState extends State<Hot>{
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
+    Dio dio =  Dio();
     return new SingleChildScrollView(
       child: new Container(
-        child: new Column(
-          children: <Widget>[
-            hotCard(questionList[0]),
-            hotCard(questionList[1]),
-            hotCard(questionList[2]),
-            hotCard(questionList[3]),
-            hotCard(questionList[4]),
-            hotCard(questionList[5]),
-            hotCard(questionList[6]),
-            hotCard(questionList[7]),
-            hotCard(questionList[8]),
-            hotCard(questionList[9]),
-            hotCard(questionList[10]),
-            hotCard(questionList[11])
-          ],
-        ),
+        child: FutureBuilder(
+        future: dio.get('http://192.168.0.104:8888/get_hot_question_list'),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+    if (snapshot.connectionState == ConnectionState.done) {
+    if (snapshot.hasError) {
+    // 请求失败，显示错误
+    return Text("Error: ${snapshot.error}");}
+    print(snapshot.data.runtimeType);
+    var hotQuestionList= [];
+    for( var i = 0 ; i < 15; i++ ) {
+      hotQuestionList.add(Map<String,dynamic>.from(snapshot.data.data[i]));
+    }
+    List<Widget> listWidget = [];
+    for (var i =0;i<15;i++){
+      listWidget.add(hotCard(hotQuestionList[i]));
+    }
+    return Column(children: listWidget);
+    }
+    return Text("");
+    }
       ),
-    );
+    ));
   }
 }
