@@ -8,6 +8,7 @@ class Hot extends StatefulWidget{
   _HotState createState() => new _HotState();
 }
 class _HotState extends State<Hot>{
+  var stealList = [];
   Widget hotCard(Map<String,dynamic> question){
     var flatButtonOnPressed = (){
       Navigator.of(context).push(
@@ -86,7 +87,6 @@ class _HotState extends State<Hot>{
     if (snapshot.hasError) {
     // 请求失败，显示错误
     return Text("Error: ${snapshot.error}");}
-    print(snapshot.data.runtimeType);
     var hotQuestionList= [];
     for( var i = 0 ; i < 15; i++ ) {
       hotQuestionList.add(Map<String,dynamic>.from(snapshot.data.data[i]));
