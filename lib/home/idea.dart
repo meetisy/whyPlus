@@ -13,58 +13,6 @@ class _IdeaState extends State<Idea>{
       await Future.delayed(Duration(milliseconds: 1500));  //模拟网络请求
       setState(() {});
     }
-    // var imageList = ["https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
-    // "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",
-    //     "https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
-    //   "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",
-    //   "https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
-    //   "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",
-    //   "https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
-    //   "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",
-    //   "https://pic2.zhimg.com/50/v2-710b7a6fea12a7203945b666790b7181_hd.jpg",
-    //   "https://pic3.zhimg.com/50/v2-56dca99cd8718f9303d43b3015342ba7_hd.jpg",];
-    // var ideaList = ["2333是什么意思?","什么是flutter?",
-    //   "2333是什么意思?","什么是flutter?",
-    //   "2333是什么意思?","什么是flutter?",
-    //   "2333是什么意思?","什么是flutter?", "2333是什么意思?","什么是flutter?",];
-
-    // return RefreshIndicator(
-    //   onRefresh: _onRefresh,
-    //   child: StaggeredGridView.countBuilder(
-    //     crossAxisCount: 4,
-    //     itemCount: 9,
-    //     itemBuilder: (BuildContext context, int index){
-    //       var textButtonOnPressed = (){
-    //         Navigator.of(context).push(
-    //             MaterialPageRoute(builder: (context){
-    //               return new QuestionPage();}));
-    //       };
-    //       var textButtonChild = Column(children: [
-    //             Image.network(imageList[index]),
-    //             Spacer(),
-    //             Text(ideaList[index],style: TextStyle(fontSize: 15,color: Colors.black),)
-    //       ]);
-    //       return new Container(
-    //           color: Colors.white,
-    //           child: TextButton(
-    //             child: textButtonChild,
-    //             onPressed: textButtonOnPressed,
-    //           ),
-    //           // child: Column(
-    //           //   children: [
-    //           //     Image.network(imageList[index]),
-    //           //     Spacer(),
-    //           //     Text(ideaList[index],style: TextStyle(fontSize: 15),)
-    //           //   ],
-    //           // )
-    //       );
-    //     },
-    //     staggeredTileBuilder: (int index) =>
-    //     new StaggeredTile.count(2, index.isEven ? 2 : 1.7),
-    //     mainAxisSpacing: 8.0,
-    //     crossAxisSpacing: 8.0,
-    //   )
-    // );
     Dio dio =  Dio();
     return FutureBuilder(
         future: dio.get('http://192.168.0.104:8888/get_idea_list'),

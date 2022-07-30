@@ -88,11 +88,11 @@ class _HotState extends State<Hot>{
     // 请求失败，显示错误
     return Text("Error: ${snapshot.error}");}
     var hotQuestionList= [];
-    for( var i = 0 ; i < 15; i++ ) {
+    for( var i = 0 ; i < snapshot.data.data.length; i++ ) {
       hotQuestionList.add(Map<String,dynamic>.from(snapshot.data.data[i]));
     }
     List<Widget> listWidget = [];
-    for (var i =0;i<15;i++){
+    for (var i =0;i<snapshot.data.data.length;i++){
       listWidget.add(hotCard(hotQuestionList[i]));
     }
     return Column(children: listWidget);

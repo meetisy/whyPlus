@@ -9,10 +9,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:dio/dio.dart';
 
 void main() async{
+  // Dio dio =  Dio();
+  // Response? response = await dio.get('http://127.0.0.1:8888/get_hot_question_list');
+  // List<Map<String,dynamic>>list = [];
+  // for( var i = 0 ; i < 15; i++ ) {
+  //   list.add(Map<String,dynamic>.from(response.data[i]));
+  // }
+  // print(list);
+
   Dio dio =  Dio();
-  Response? response = await dio.get('http://127.0.0.1:8888/get_hot_question_list');
+  Response? response = await dio.get('http://192.168.0.104:8888/get_search_question_list',
+      queryParameters:{"SearchInput":"Two"});
   List<Map<String,dynamic>>list = [];
-  for( var i = 0 ; i < 15; i++ ) {
+  for( var i = 0 ; i < response.data.length; i++ ) {
     list.add(Map<String,dynamic>.from(response.data[i]));
   }
   print(list);

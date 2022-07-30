@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
+import 'search_question.dart';
 class Search extends StatefulWidget{
   @override
   _SearchState createState() => new _SearchState();
@@ -13,8 +13,11 @@ class _SearchState extends State<Search>{
     var controller = TextEditingController();
     FocusNode _focusNode = FocusNode();
     _focusNode.addListener(() {
-      if (!_focusNode.hasFocus) {
+      if (!_focusNode.hasFocus && controller.text != "") {
         print("请求搜索问题：${controller.text}");
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context){
+              return new SearchQuestion(controller.text);}));
         setState(() {
           historySearchList.add("${controller.text}");
         });
