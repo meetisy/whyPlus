@@ -81,7 +81,7 @@ class _HotState extends State<Hot>{
     return new SingleChildScrollView(
       child: new Container(
         child: FutureBuilder(
-        future: dio.get('http://192.168.0.104:8888/get_hot_question_list'),
+        future: dio.get('http://192.168.0.100:8888/get_hot_question_list'),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
     if (snapshot.connectionState == ConnectionState.done) {
     if (snapshot.hasError) {

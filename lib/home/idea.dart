@@ -15,7 +15,7 @@ class _IdeaState extends State<Idea>{
     }
     Dio dio =  Dio();
     return FutureBuilder(
-        future: dio.get('http://192.168.0.104:8888/get_idea_list'),
+        future: dio.get('http://192.168.0.100:8888/get_idea_list'),
         builder: (BuildContext context, AsyncSnapshot snapshot){
           if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
