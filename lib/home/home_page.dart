@@ -5,6 +5,7 @@ import 'follow.dart';
 import 'recommend.dart';
 import 'hot.dart';
 import 'search.dart';
+import 'my.dart';
 
 class HomePage extends StatefulWidget{
 
@@ -15,11 +16,11 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context){
-    var pageList = [HomePage(),Follow(),Follow(),Follow(),Search()];
+    var pageList = [HomePage(),Follow(),Follow(),Follow(),My(),Search()];
     return new DefaultTabController(length: 3, child: new Scaffold(
       appBar: new AppBar(
         actions: [IconButton(onPressed: ()=>{
-          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[4]))
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[5]))
         }, icon: Icon(Icons.search,color: Colors.black,))],
         backgroundColor: Colors.white,
         title: new TabBar(
@@ -70,7 +71,9 @@ class _HomePageState extends State<HomePage>{
         IconButton(icon: Icon(Icons.rocket_launch),onPressed: ()=>{
           Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[0]))
         }),
-        IconButton(icon: Icon(Icons.face),onPressed: ()=>{print(0)}),
+        IconButton(icon: Icon(Icons.face),onPressed: ()=>{
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pageList[4]))
+        }),
       ],
         mainAxisAlignment: MainAxisAlignment.spaceAround
     )
